@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote Engine — price the job before you leave the driveway</title>
+<meta name="description" content="Takeoff, pricing and one-page proposals for 18 local service trades. One offline HTML file, $47 once, 30-day refund.">
+<meta property="og:title" content="Quote Engine — price the job before you leave the driveway">
+<meta property="og:description" content="Measure the work, price the hours, print a one-page proposal. One file, works offline, $47 once.">
+<meta name="theme-color" content="#f6f6f3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f6f3;
+  --card:#ffffff;
+  --ink:#17181a;
+  --ink-2:#5b5e64;
+  --ink-3:#666a70;
+  --rule:#dcdcd6;
+  --rule-2:#c3c4bd;
+  --tape:#2b5d9e;
+  --tape-dark:#1f4879;
+  --wash:#eaf0f7;
+  --alert:#b8410f;
+  --alert-wash:#fbede7;
+  --money:#16624a;
+  --money-wash:#e8f1ec;
+  --disp:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Spectral",Georgia,serif;
+  --shadow:0 1px 2px rgba(23,24,26,.06),0 8px 24px -12px rgba(23,24,26,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--tape)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.wide{max-width:1060px;margin:0 auto;padding:0 22px}
+
+h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.02;margin:0;letter-spacing:-.005em}
+h1{font-size:clamp(40px,7vw,68px);letter-spacing:-.015em}
+h2{font-size:clamp(30px,4.6vw,42px)}
+h3{font-size:24px;letter-spacing:.005em}
+p{margin:0 0 18px}
+strong,b{font-weight:600}
+.eyebrow{
+  font-family:var(--disp);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tape);font-weight:600;margin-bottom:12px;
+}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-2)}
+.small{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.tiny{font-size:13px;line-height:1.5;color:var(--ink-3)}
+hr.rule{border:0;border-top:1px solid var(--rule);margin:0}
+
+/* ---------- top strip ---------- */
+.strip{
+  background:var(--ink);color:#f2f2ee;
+  font-family:var(--disp);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:9px 16px;
+}
+.strip b{color:#fff}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px}
+.hero h1{margin-bottom:20px}
+.hero .lede{max-width:640px}
+.hero .cta-row{margin:30px 0 14px}
+.cta{
+  display:inline-block;background:var(--tape);color:#fff;text-decoration:none;
+  font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:.03em;
+  padding:16px 34px;border-radius:2px;border:1px solid var(--tape-dark);
+  box-shadow:0 2px 0 var(--tape-dark);transition:transform .06s ease, background .15s ease;
+}
+.cta:hover{background:var(--tape-dark)}
+.cta:active{transform:translateY(2px);box-shadow:none}
+.cta-note{font-size:14px;color:var(--ink-3);margin-top:12px}
+.cta-note span{white-space:nowrap}
+/* WarriorPlus image buy button — always centred in its column */
+.buy-btn{display:block;text-align:center;margin:6px 0 2px;line-height:0}
+.buy-btn img{display:inline-block;max-width:100%;height:auto;vertical-align:middle}
+
+/* ---------- figures ---------- */
+figure{margin:34px 0}
+figure.shot{
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:8px;box-shadow:var(--shadow);
+}
+figure.shot img{border:1px solid #eceae4;border-radius:1px}
+figcaption{
+  font-size:13.5px;color:var(--ink-2);line-height:1.5;
+  padding:10px 4px 2px;margin:0;
+}
+figcaption b{color:var(--ink)}
+
+/* ---------- sections ---------- */
+section{padding:64px 0}
+section.tight{padding:40px 0}
+.band{background:#efefea;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.band-white{background:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.band-ink{background:var(--ink);color:#eceae4}
+.band-ink h2,.band-ink h3,.band-ink h4{color:#fff}
+.band-ink .eyebrow{color:#8fb3dd}
+.band-ink .small,.band-ink .tiny,.band-ink figcaption{color:#b9bbc0}
+.band-ink .lede{color:#cfd1d6}
+
+/* ---------- scenes ---------- */
+.scene{
+  border-left:3px solid var(--rule-2);padding:2px 0 2px 20px;margin-bottom:26px;
+}
+.scene p{margin-bottom:6px}
+.scene .q{
+  font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);
+  margin-bottom:6px;
+}
+.scene .why{font-size:15px;color:var(--ink-2);margin:0}
+
+/* ---------- steps ---------- */
+.step{display:grid;grid-template-columns:56px 1fr;gap:18px;margin-bottom:30px}
+.step .n{
+  font-family:var(--disp);font-weight:700;font-size:34px;line-height:.9;color:var(--tape);
+  border-top:3px solid var(--tape);padding-top:6px;
+}
+.step h3{margin-bottom:6px}
+.step p{margin-bottom:8px}
+.step ul{margin:0;padding-left:18px}
+.step li{margin-bottom:5px}
+
+/* ---------- table ---------- */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin:8px 0 22px}
+th{
+  text-align:left;font-family:var(--disp);font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:600;
+  padding:9px 10px;border-bottom:1px solid var(--ink);
+}
+td{padding:9px 10px;border-bottom:1px solid var(--rule);font-size:15.5px}
+th.n,td.n{text-align:right}
+tr.sum td{border-top:1px solid var(--ink);font-weight:600;background:#fafaf7}
+tr.push td{background:var(--alert-wash)}
+td.bad{color:var(--alert);font-weight:600}
+.table-note{font-size:13.5px;color:var(--ink-2);margin-top:-12px}
+
+/* ---------- cards ---------- */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:20px 20px 18px;
+}
+.card h3{font-size:20px;margin-bottom:6px}
+.card p{font-size:15px;margin:0;color:var(--ink-2)}
+.card .tag{
+  font-family:var(--disp);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tape);font-weight:600;display:block;margin-bottom:8px;
+}
+
+/* ---------- callout ---------- */
+.note{
+  border-left:3px solid var(--tape);background:var(--wash);
+  padding:16px 18px;margin:26px 0;font-size:15.5px;line-height:1.55;
+}
+.note.alert{border-color:var(--alert);background:var(--alert-wash)}
+.note.money{border-color:var(--money);background:var(--money-wash)}
+.note b{display:block;font-family:var(--disp);font-size:17px;letter-spacing:.02em;margin-bottom:4px}
+.note p:last-child{margin-bottom:0}
+
+/* ---------- themes ---------- */
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.themes figure{margin:0;background:var(--card);border:1px solid var(--rule);padding:6px;box-shadow:var(--shadow)}
+.themes img{border:1px solid #eceae4}
+.themes figcaption{padding:8px 2px 0;font-size:13px}
+.themes b{
+  display:block;font-family:var(--disp);font-size:16px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink);margin-bottom:2px;
+}
+
+
+/* ---------- not-list ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.not-list{list-style:none;padding:0;margin:0}
+.not-list li{
+  padding:11px 0 11px 30px;border-bottom:1px solid var(--rule);
+  position:relative;font-size:15.5px;
+}
+.not-list li:before{
+  content:"";position:absolute;left:2px;top:18px;width:13px;height:2px;background:var(--alert);
+}
+.not-list li b{display:block}
+.not-list li span{color:var(--ink-2);font-size:14.5px}
+.yes-list{list-style:none;padding:0;margin:0}
+.yes-list li{
+  padding:11px 0 11px 30px;border-bottom:1px solid var(--rule);
+  position:relative;font-size:15.5px;
+}
+.yes-list li:before{
+  content:"";position:absolute;left:3px;top:16px;width:11px;height:6px;
+  border-left:2px solid var(--money);border-bottom:2px solid var(--money);
+  transform:rotate(-45deg);
+}
+.yes-list li b{display:block}
+.yes-list li span{color:var(--ink-2);font-size:14.5px}
+
+/* ---------- price ---------- */
+.price-box{
+  background:var(--card);border:1px solid var(--ink);border-radius:3px;
+  padding:34px 32px;box-shadow:var(--shadow);max-width:560px;
+}
+.price-box .amt{
+  font-family:var(--disp);font-weight:700;font-size:76px;line-height:.9;
+  letter-spacing:-.02em;
+}
+.price-box .amt sup{font-size:30px;top:-26px;position:relative;vertical-align:baseline}
+.price-box .once{
+  font-family:var(--disp);font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin:6px 0 18px;
+}
+.price-box ul{list-style:none;padding:0;margin:0 0 24px}
+.price-box li{
+  padding:7px 0 7px 24px;position:relative;font-size:15.5px;
+  border-bottom:1px solid var(--rule);
+}
+.price-box li:before{
+  content:"";position:absolute;left:2px;top:14px;width:10px;height:5px;
+  border-left:2px solid var(--money);border-bottom:2px solid var(--money);
+  transform:rotate(-45deg);
+}
+.guarantee{
+  border:1px dashed var(--rule-2);padding:18px;margin-top:22px;font-size:14.5px;
+  color:var(--ink-2);background:#fbfbf8;
+}
+.guarantee b{color:var(--ink)}
+
+/* ---------- faq ---------- */
+.faq-item{border-bottom:1px solid var(--rule);padding:20px 0}
+.faq-item h3{font-size:20px;margin-bottom:6px}
+.faq-item p{margin:0;color:var(--ink-2);font-size:16px}
+
+/* ---------- maker note ---------- */
+.maker{
+  border:1px solid var(--rule);background:var(--card);padding:26px 28px;
+  font-size:16px;line-height:1.6;
+}
+.maker p:last-child{margin-bottom:0}
+.maker .sig{
+  font-family:var(--disp);font-size:15px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:16px;
+}
+
+/* ---------- final ---------- */
+.final{text-align:center;padding:76px 0}
+.final h2{margin-bottom:16px}
+.final p{max-width:560px;margin-left:auto;margin-right:auto}
+.final .cta{margin-top:12px}
+
+footer{
+  border-top:1px solid var(--rule);padding:30px 0 50px;
+  font-size:13px;color:var(--ink-3);line-height:1.6;
+}
+footer a{color:var(--ink-3)}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+
+@media (max-width:780px){
+  body{font-size:16px}
+  section{padding:48px 0}
+  .grid-2,.grid-3,.two-col,.themes{grid-template-columns:1fr}
+  .themes{grid-template-columns:1fr 1fr}
+  .step{grid-template-columns:40px 1fr;gap:12px}
+  .step .n{font-size:26px}
+  .price-box{padding:26px 22px}
+  .price-box .amt{font-size:60px}
+  .hero{padding:38px 0 0}
+}
+@media (max-width:520px){
+  .themes{grid-template-columns:1fr}
+  figure.shot{padding:5px}
+}
+a:focus-visible,.cta:focus-visible{outline:3px solid var(--tape);outline-offset:3px}
+.band-ink a:focus-visible,.band-ink .cta:focus-visible{outline-color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cta{transition:none}}
+.cta-mid{margin:30px 0 0}
+@media (min-width:781px){
+  .themes{grid-template-columns:repeat(6,1fr)}
+  .themes figure{grid-column:span 2}
+  .themes figure:nth-child(n+4){grid-column:span 3}
+}
+@media (min-width:521px) and (max-width:780px){.themes figure:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+
+<div class="strip">One file · works with the internet off · <b>$47 once</b> · 30-day refund</div>
+
+<main>
+<!-- ============================================================ HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Takeoff → price → proposal</div>
+    <h1>Price the job before you leave the driveway.</h1>
+    <p class="lede">Quote Engine measures the surfaces, prices the actual hours, and prints a one-page proposal — in about the time it takes to load the ladder back on the truck.</p>
+    <div class="cta-row">
+      <a class="cta" href="#buy">Get Quote Engine — $47</a>
+    </div>
+    <p class="cta-note">No subscription. No account. No install. <span>It is one HTML file you double-click.</span></p>
+  </div>
+
+  <div class="wide">
+    <figure class="shot">
+      <img fetchpriority="high" src="shots/estimate.png" alt="Quote Engine estimate screen showing seven measured lines, a recommended price of $2,478, a 40% margin gauge, the cost breakdown and a discount simulator.">
+      <figcaption><b>The whole tool, on one screen.</b> Seven measured lines on the left. On the right: the price, what it actually costs you, what a discount does to your profit, and the three-price layout. That is a real demo job, not a mockup.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ============================================================ PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The two hours that cost you the job</div>
+    <h2>You already know the job. The number is the hard part.</h2>
+    <p class="lede" style="margin-bottom:34px">Not because you can't do the work. Because the price has to come out of a walkthrough, a rate you half-remember, and a feeling about what the last guy charged.</p>
+
+    <div class="scene">
+      <div class="q">"It's about eighteen hundred square feet. Call it thirty-five hundred."</div>
+      <p class="why">Round numbers are where the money goes. Rounding rarely lands in your favor. Two hours of real takeoff can be the difference between a 41% margin and a 26% one — and you will never know which one you just quoted.</p>
+    </div>
+
+    <div class="scene">
+      <div class="q">"Can you do any better on the price?"</div>
+      <p class="why">You say yes because you don't have the cost in front of you. On a $2,478 job at 40% margin, knocking 10% off the price does not cost you 10%. It costs you a quarter of the profit. Most contractors discover this after the check clears.</p>
+    </div>
+
+    <div class="scene">
+      <div class="q">"I've got two more guys coming out. Can you email me something?"</div>
+      <p class="why">So you type a paragraph into an email at 9pm, with no scope, no terms and no third option. The other guy sends a page with his logo on it. Price was never the only difference.</p>
+    </div>
+
+    <p style="margin-top:34px">Quote Engine exists to close that gap: <strong>the takeoff, the price and the proposal are the same piece of work, done once.</strong> Measure the room in front of you, and the price and the page are already there.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================================================ HOW IT WORKS -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Three steps, in the order you already work.</h2>
+    <p class="lede" style="margin-bottom:38px">Nothing here is a new process to learn. It is the takeoff sheet you already write on a clipboard, with the arithmetic done for you.</p>
+
+    <div class="step">
+      <div class="n">01</div>
+      <div>
+        <h3>Measure the surfaces</h3>
+        <p>One row per surface. The surface type decides how the row is measured, and that is the only rule:</p>
+        <ul>
+          <li><b>Area</b> — walls, ceilings, siding, decking. Qty × width × height, minus a deduction for the windows and the fireplace.</li>
+          <li><b>Linear feet</b> — trim, fascia, cabinet boxes, fence. The tool converts to square feet.</li>
+          <li><b>Each</b> — doors, windows, drawers, cabinet doors, garage doors. Count them and move on.</li>
+        </ul>
+        <p class="small" style="margin-top:10px">132 line items across 18 trades — painting, pressure washing, roofing, flooring, fencing &amp; decks, landscaping, drywall, handyman, cleaning, lawn care, mobile detailing, plumbing, HVAC, electrical, auto repair, locksmith, appliance repair, and a blank Custom trade. Five condition factors (standard through worst case) and a coats-or-passes override per row. Three to five preset scopes per trade fill in the usual job so you are editing instead of starting from blank.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">02</div>
+      <div>
+        <h3>Read the money rail</h3>
+        <p>It builds from the bottom: labor hours × your burdened wage, then prep and setup, then materials with waste, then sundries, then your overhead. The total is <b>your cost</b> — the number you have to beat, not the number you quote.</p>
+        <p>Your price comes from one formula, the same one every time: <strong>price = cost ÷ (1 − margin)</strong>. A 40% margin, not a 40% markup. They are not the same number and the difference is exactly what pays for the rework day.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">03</div>
+      <div>
+        <h3>Print the page</h3>
+        <p>Seven proposal themes, one Letter page, your logo text at the top and your pitch at the bottom. Three honest scope tiers built from the same takeoff, so the difference between them is defensible line by line. Print to PDF and it's in their inbox before you're home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ MONEY RAIL -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The part that changes your pricing</div>
+    <h2>Margin is not markup. This is the part that pays for the tool.</h2>
+    <p>On $1,000 of cost, a 40% <em>markup</em> prices at $1,400 and leaves you $400. A 40% <em>margin</em> prices at $1,667 and leaves you $667. Same word in the van, different number on the invoice — and the difference is a full day of somebody's labor.</p>
+    <p>Quote Engine only speaks margin, because margin is the number that survives a slow week.</p>
+  </div>
+
+  <div class="wide">
+    <figure class="shot">
+      <img loading="lazy" decoding="async" src="shots/rail.png" alt="The money rail: recommended price, margin gauge, cost breakdown by labor, prep, material, sundries and overhead, billed per crew-hour, crew days, and a discount slider with live profit impact.">
+      <figcaption><b>The money rail.</b> Recommended price, the margin it actually earns, every cost line, billed rate per crew-hour, crew days — and, at the bottom, the discount slider.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3 style="margin:34px 0 10px">What a discount really costs</h3>
+    <p class="small">Demo job: $1,487.10 of cost, $2,478.49 recommended price, 40% margin. Drag the slider and this is what happens:</p>
+    <table>
+      <thead>
+        <tr><th scope="col">Customer asks</th><th scope="col" class="n">New price</th><th scope="col" class="n">Your margin</th><th scope="col" class="n">Profit given up</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Full price</td><td class="n">$2,478</td><td class="n">40.0%</td><td class="n">—</td></tr>
+        <tr><td>"Can you do 5%?"</td><td class="n">$2,355</td><td class="n">36.8%</td><td class="n">$124</td></tr>
+        <tr><td>"10% and we'll sign today"</td><td class="n">$2,231</td><td class="n">33.3%</td><td class="n">$248</td></tr>
+        <tr><td>"15% off, cash"</td><td class="n">$2,107</td><td class="n">29.4%</td><td class="n">$372</td></tr>
+        <tr class="push"><td>"20% or I go with the other guy"</td><td class="n">$1,983</td><td class="n bad">25.0%</td><td class="n">$496</td></tr>
+      </tbody>
+    </table>
+    <!-- VERIFY every price above against the vendors' current pricing pages before launch -->
+    <p class="table-note">A 10% discount is not a 10% haircut. It is a quarter of the profit on that job. The simulator does this arithmetic on <em>your</em> numbers before you open your mouth — so the answer can be "yes, if we drop the ceilings" instead of a silent "yes" and a bad month.</p>
+
+    <div class="note money">
+      <b>Use it as a brake, not a sales trick.</b>
+      <p style="margin:0">You are allowed to discount. You are allowed to be the cheapest quote in town. You are just not allowed to be surprised by what it cost you.</p>
+    </div>
+    <div class="cta-mid"><a class="cta" href="#buy">Get Quote Engine — $47</a></div>
+  </div>
+</section>
+
+<!-- ============================================================ PROPOSALS -->
+<section class="band">
+  <div class="wide">
+    <div class="eyebrow">The part they see</div>
+    <h2>Seven proposal themes. One page each. No design software.</h2>
+    <p class="lede" style="max-width:660px;margin-bottom:8px">Same numbers, seven different impressions. Pick one per job — from the tradesman's takeoff sheet to the architect's catalog to one big number in a black band.</p>
+
+    <div class="themes">
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-chalk.png" alt="Takeoff proposal theme: measured scope table with square footage and hours, hairline rules, condensed type, three price tiers and a signature block.">
+        <figcaption><b>Takeoff</b>The site document. Measurements visible, hours on the page, hairline rules. For anyone who wants to see the working.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-gallery.png" alt="Catalogue proposal theme: editorial serif type, wide white margins, a small caps title and generous spacing around the scope table and price tiers.">
+        <figcaption><b>Catalogue</b>Editorial serif, wide margins, small-caps title. Reads like a design studio. For design-led homes and architects.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-card.png" alt="Card proposal theme: bold header and a stat strip with measured area, crew days and recommended total, one row per line.">
+        <figcaption><b>Card</b>A bold header and a stat strip — measured area, crew days, recommended total. The one a client screenshots. Works in any trade.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-ledger.png" alt="Ledger proposal theme: dense ruled table with hours and rates, invoice-grade layout, compact type and three price tiers.">
+        <figcaption><b>Ledger</b>Dense and ruled, with hours on the page. Invoice-grade. For property managers and commercial bids.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-poster.png" alt="Poster proposal theme: one very large price numeral on a white page with a black band across the bottom.">
+        <figcaption><b>Poster</b>One enormous number, a black band, nothing to argue with. For the jobs that sell on certainty.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-minimal.png" alt="Minimal proposal theme: clean white page, thin rules, lots of air.">
+        <figcaption><b>Minimal</b>Clean white, thin rules, lots of air. Quiet and modern.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="shots/proposal-modern.png" alt="Modern proposal theme: coloured header bar, card-style tiers and a light tinted panel behind the totals.">
+        <figcaption><b>Modern</b>Coloured header bar, card tiers. Contemporary look.</figcaption>
+      </figure>
+    </div>
+
+    <p class="small" style="margin-top:22px">All seven are in the download and print on one Letter page with your business name, phone and pitch. The optional <a href="upsell.html">Pro edition</a> adds two more — <b>Executive</b> (dark header, gold accent) and <b>Clean</b> (white page, one accent colour) — but nothing on this page needs it.</p>
+
+    <div class="wide" style="padding:0;margin-top:36px">
+      <figure class="shot">
+        <img loading="lazy" decoding="async" src="shots/emails.png" alt="Email builder: template selector, tone, tier, subject and body preview filled with the job's numbers.">
+        <figcaption><b>Email builder.</b> A library of ready-to-send templates (quote, follow-up, booking, change order, invoice, and more) filled with the job's real numbers. Edit, copy, or mark as sent. No AI, no API, fully offline.</figcaption>
+      </figure>
+    </div>
+
+    <div class="wide" style="padding:0;margin-top:36px">
+      <figure class="shot">
+        <img loading="lazy" decoding="async" src="shots/tiers.png" alt="Close-up of the three price tiers: Essential, Recommended and Best finish, with scope bullets under each.">
+        <figcaption><b>Three scopes, one takeoff.</b> Essential, Recommended, Best finish — each with bullets you edit. Not a fake decoy: three honestly different amounts of work on the same measured job, so the middle one is a real choice instead of a trick.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CUSTOMERS -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="eyebrow">Memory</div>
+    <h2>It remembers your customers and their jobs.</h2>
+    <p class="lede" style="margin-bottom:26px">Save a job and the customer is registered — name, email, phone, address — with every quote, price, date and status attached. Search them, see their history grouped by month, mark jobs won or lost, and start a new quote for a returning customer in one click. No spreadsheet to maintain.</p>
+    <div class="wide" style="padding:0;margin-top:24px">
+      <figure class="shot">
+        <img loading="lazy" decoding="async" src="shots/customers.png" alt="Customers tab: searchable customer list with job history grouped by month, prices and status dropdowns.">
+        <figcaption><b>Customers &amp; job history.</b> Ten customers, one to ten jobs each, grouped by month with trade, date, price and status. Search by name, email or phone. Status changes feed a live revenue total.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CALIBRATION -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why the numbers are yours</div>
+    <h2>Every rate is editable, and calibrating takes one job.</h2>
+    <p>Each trade ships its own production and material rates, rounded from commonly published estimating ranges — interior walls 150–250 sq ft per hour per coat, ceilings 125–200, brushed trim 50–100 linear feet per hour, airless spray 600–1,000, doors and windows about 45 minutes each; tear-off 1.5–2.5 squares per hour; LVP 100–150 sq ft per hour; mowing 3,000–5,000 sq ft per hour. They are labeled as starting points because that is what they are, and every one of them is editable.</p>
+    <p>Then you replace them:</p>
+
+    <div class="note">
+      <b>Measure your hours the way you measure the job.</b>
+      <p style="margin:0">Start the clock when the crew begins setup. Stop when the truck is loaded. Write it down the same day. Then: <strong>sq ft/hr = (area × coats) ÷ hours</strong>. Do that for three jobs with the same surface, take the middle number, and type it into the Rates tab.</p>
+    </div>
+
+    <p>After three jobs the tool is quoting <em>your</em> company — your crew, your prep standard, your climate — instead of an average of the internet. The manual walks through the whole table, including the two numbers to check after every job: quoted hours versus actual hours, and billed rate per crew-hour.</p>
+
+    <div class="wide" style="padding:0;margin-top:32px">
+      <figure class="shot">
+        <img loading="lazy" decoding="async" src="shots/rates.png" alt="Rates and overhead tab showing wage, overhead percentage, target margin, crew size and a table of production rates, coverage and material price for every surface, with a reset button.">
+        <figcaption><b>Rates &amp; overhead.</b> Every line item of your trade, three numbers each: production rate, material coverage, and material price. Plus wage, overhead, prep, waste, sundries, margin, crew size and your business details. Reset any time without touching your job.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ WHAT'S IN IT -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="eyebrow">What you get</div>
+    <h2>Five files. No installer, no login, no drip feed.</h2>
+
+    <div class="grid-2" style="margin-top:28px">
+      <div class="card">
+        <span class="tag">The tool</span>
+        <h3>QuoteEngine.html</h3>
+        <p>One 350 KB file. Double-click and it runs in your browser. Copy it to a USB stick, a laptop, a desktop — it behaves identically with the wifi off, because it never asks the internet for anything.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The manual</span>
+        <h3>Start-Here.pdf</h3>
+        <p>Seven pages, written for a contractor and not a software reviewer. Margin versus markup, measuring without guessing, reading the rail, calibrating your rates in one job, printing, backups, FAQ. Covers all eighteen trades.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The example</span>
+        <h3>Sample-Job.json</h3>
+        <p>A finished four-room interior with a real scope, three tiers and terms. Import it and take it apart. It is the fastest way to see how a complete job is built.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The terms</span>
+        <h3>LICENCE.txt + README.txt</h3>
+        <p>Plain-English license: one business, unlimited estimates, no resale. The README covers opening it on Windows and Mac, printing, and where your data lives.</p>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top:24px">That is the whole $47 product — nothing in it expires, and no feature is held back behind a subscription, credits or a per-proposal fee. Optional <a href="upsell.html">Pro and Agency editions</a> exist for people running several businesses or white-labelling the tool for clients. You do not need either of them to use what you bought here.</p>
+  </div>
+</section>
+
+<!-- ============================================================ COMPARE -->
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow">The arithmetic nobody shows you</div>
+    <h2>What the same job costs on a subscription.</h2>
+    <p class="lede" style="margin-bottom:26px">Most estimating software is rented. You pay every month, per user, often per technician, and the moment you stop paying the tool stops working. Quote Engine is bought once. Here is roughly what the closest alternatives cost over three years at list price.</p>
+
+    <!-- VERIFY: confirm all vendor prices and plan names against their current pricing pages before launch -->
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <table style="font-size:15px;min-width:560px">
+      <thead>
+        <tr><th scope="col">Tool</th><th scope="col">What it is</th><th scope="col" class="n">Monthly</th><th scope="col" class="n">Over 3 years</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Jobber</b> (Core / Connect / Grow)</td><td>Scheduling, invoicing, CRM for home service</td><td class="n">$39 – $199</td><td class="n">$1,404 – $7,164</td></tr>
+        <tr><td><b>Housecall Pro</b> (Basic / Essentials / MAX)</td><td>All-in-one field-service platform</td><td class="n">$59 – $299</td><td class="n">$2,124 – $10,764</td></tr>
+        <tr><td><b>Contractor Foreman</b></td><td>Project management + estimating</td><td class="n">$49 – $249</td><td class="n">$1,764 – $8,964</td></tr>
+        <tr><td><b>Estimate Rocket</b></td><td>Estimating + proposals for trades</td><td class="n">$59 – $149</td><td class="n">$2,124 – $5,364</td></tr>
+        <tr><td><b>Clear Estimates</b></td><td>Cost database + estimating</td><td class="n">$59</td><td class="n">$2,124</td></tr>
+        <tr><td><b>PlanSwift / On-Screen Takeoff</b></td><td>Digital takeoff (annual license)</td><td class="n">~$125 / mo</td><td class="n">~$4,500</td></tr>
+        <tr class="push"><td><b>Quote Engine</b></td><td>Takeoff, pricing, proposal — one file</td><td class="n">$0 after purchase</td><td class="n">$47 total</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-note">Published list prices as of 2026 — verify the current price before you decide, and check whether the plan is per user or per technician. None of them are bad products; they do far more than Quote Engine does. The point is the price of the one job you actually need done.</p>
+
+    <div class="note money" style="margin-top:24px">
+      <b>What you are not getting for $47.</b>
+      <p style="margin:0">Quote Engine does not schedule jobs, send invoices, take payments or run payroll. It does keep a customer list and job history, but it is not a CRM. If you need those, you need one of the tools above, and $47 is not going to replace them. What it does is the one thing most of them do badly or not at all: turn a walkthrough into a defensible price and a one-page proposal, on a machine with no internet, in four minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HONESTY -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Straight answers</div>
+    <h2>What this is, and what it isn't.</h2>
+    <p class="lede" style="margin-bottom:30px">Most software pages oversell. This one has a narrow job and does it well, so here is the boundary drawn clearly.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 style="margin-bottom:14px">It is</h3>
+        <ul class="yes-list">
+          <li><b>A takeoff and pricing calculator</b><span>Real arithmetic on real measurements, with every rate editable.</span></li>
+          <li><b>A proposal generator</b><span>Seven themes, three scopes, Letter size, print or PDF.</span></li>
+          <li><b>A discount simulator</b><span>Shows the profit cost before you agree to anything.</span></li>
+          <li><b>An email builder</b><span>A library of ready-to-send client emails (quote, follow-up, booking, change order, invoice and more) filled with the job's real numbers. No AI, no API, fully offline.</span></li>
+          <li><b>A customer memory</b><span>Every saved job is archived by customer, with name, email, phone, dates, prices and status. Search, re-quote, track won and lost.</span></li>
+          <li><b>Your business name on the proposal</b><span>Name, phone and a one-line pitch print on all seven themes.</span></li>
+          <li><b>Yours to keep</b><span>One file, offline, no account, no expiry.</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:14px">It isn't</h3>
+        <ul class="not-list">
+          <li><b>A CRM or scheduling app</b><span>No pipeline, no reminders, no calendar. It prices jobs.</span></li>
+          <li><b>Accounting or invoicing</b><span>No tax filing, no payments, no bookkeeping.</span></li>
+          <li><b>A lead source</b><span>It does not bring you customers. It prices the ones you have.</span></li>
+          <li><b>A price database for your town</b><span>Nobody can sell you that honestly. Your rates come from your jobs.</span></li>
+          <li><b>A course or a prompt pack</b><span>There is no video to watch and nothing to prompt. It is software.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note alert" style="margin-top:32px">
+      <b>One honest limitation.</b>
+      <p style="margin:0">The default rates are starting points, not gospel. If you never calibrate them to your own jobs, you will get a well-organized guess instead of a price. The manual is short for exactly that reason — page 5 is the one that pays for the tool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ WHO -->
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow">Fit</div>
+    <h2>Who this is for</h2>
+    <div class="grid-3" style="margin-top:26px">
+      <div class="card">
+        <h3>Sole operator</h3>
+        <p>You quote at the kitchen table at 9pm. This gets you to a real number and a page you are not embarrassed to send, in one sitting.</p>
+      </div>
+      <div class="card">
+        <h3>Small crew, 2–6</h3>
+        <p>One person should own the pricing. The Rates tab is where that person's knowledge lives, so the numbers stop walking out the door.</p>
+      </div>
+      <div class="card">
+        <h3>New to quoting</h3>
+        <p>If you came up on the brush and never learned takeoff, this is the structure: surface, measurement, hours, cost, margin, page. In that order.</p>
+      </div>
+    </div>
+    <p class="small" style="margin-top:24px"><b>Not a fit:</b> multi-location companies that need estimating inside an ERP, anyone who wants the software to set their prices for them, and anyone looking for a marketing system. This is a pricing tool.</p>
+  </div>
+</section>
+
+<!-- ============================================================ BUY -->
+<section id="buy">
+  <div class="wrap">
+    <div class="eyebrow">Price</div>
+    <h2 style="margin-bottom:26px">$47. Once. That's the whole transaction.</h2>
+
+    <div class="price-box">
+      <div class="amt"><sup>$</sup>47</div>
+      <div class="once">One-time · instant download</div>
+
+      <ul>
+        <li>Quote Engine, single file, works offline</li>
+        <li>Seven-page manual (PDF)</li>
+        <li>Seven proposal themes, three scope tiers</li>
+        <li>132 line items across 18 trades</li>
+        <li>Discount and margin simulator</li>
+        <li>Email builder and customer history</li>
+        <li>Sample job file to learn from</li>
+        <li>Unlimited estimates for one business</li>
+      </ul>
+
+      <a class="buy-btn" href="https://warriorplus.com/o2/buy/cp0qwh/l7k4sp/x7830c"><img src="https://warriorplus.com/o2/btn/fn100011000/cp0qwh/l7k4sp/480684" alt="Buy Quote Engine — $47"></a>
+      <p class="cta-note" style="text-align:center">Card or PayPal · download immediately after checkout</p>
+      <p class="tiny" style="text-align:center;margin-top:8px">Disclaimer: WarriorPlus is used to help manage the sale of products on this site. While WarriorPlus helps facilitate the sale, all payments are made directly to the product vendor and NOT WarriorPlus. Thus, all product questions, support inquiries and/or refund requests must be sent to the vendor. WarriorPlus's role should not be construed as an endorsement, approval or review of these products or any claim, statement or opinion used in the marketing of these products.</p>
+
+      <div class="guarantee">
+        <b>30-day refund, no interrogation.</b> If it is not for you, email <a href="mailto:ayoubebay1@gmail.com">ayoubebay1@gmail.com</a> with your order number inside 30 days and you get your money back. You keep the files — chasing down a deleted HTML file is not worth either of our time.
+      </div>
+    </div>
+
+    <p class="tiny" style="margin-top:20px;max-width:560px">License: one local-service business, in any trade, on any number of your own computers, unlimited estimates. No resale or redistribution. Coaches and agencies who want to deploy it to client businesses should ask about the agency license.</p>
+  </div>
+</section>
+
+<!-- ============================================================ MAKER -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="maker">
+      <div class="eyebrow">Why it's built this way</div>
+      <p>Three decisions shaped this, and they were all made against the usual advice.</p>
+      <p><b>It is one file, not a web app.</b> A subscription needs a server, a login and a connection. A contractor on site needs none of those. So the entire tool — fonts, styles, logic — is inside a single HTML file that will still open in ten years.</p>
+      <p><b>It shows you the cost, not just the price.</b> Plenty of tools will multiply square footage by a number. The useful part is seeing labor, prep, material, sundries and overhead separately, so when a job goes wrong you know which one lied to you.</p>
+      <p><b>It has no market price database.</b> A national average for any trade is meaningless in your town, on your ladder. The rates are yours to set and the manual shows you how to find them in one job.</p>
+      <div class="sig">Quote Engine · version 1.0</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Questions</div>
+    <h2 style="margin-bottom:14px">The ones that get asked</h2>
+
+    <div class="faq-item">
+      <h3>Do I need to install anything?</h3>
+      <p>No. It is an HTML file. Double-click it and it opens in Edge, Chrome or Safari. On Windows, if it opens in Notepad instead, right-click → Open with → Edge, and check "Always use this app".</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it work without internet?</h3>
+      <p>Yes — that is the point. The fonts are embedded in the file. It makes zero network requests, so it works in a truck, a basement or a house with no service. Once downloaded, you never need a connection again.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Where do my jobs and client details go?</h3>
+      <p>Into your browser's local storage on your own computer. Nothing is uploaded and nobody sees it, including whoever sold you the file. Export writes a .json backup you can move between machines or keep forever.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens if I clear my browser data?</h3>
+      <p>You lose the saved job — so export after every job that sells. The file itself is unaffected. Import brings a job back on any computer.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I put my logo on the proposal?</h3>
+      <p>Upload your logo once on the Rates tab and it prints at the top of all seven themes. Your business name, phone and one-line pitch print too, in the theme's own typography. Use a clean PNG or SVG so it scales.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will a big job fit on one page?</h3>
+      <p>Yes. The proposal measures itself and scales down to stay on a single Letter page, and tells you when it has done so. It will not silently spill onto page two and make you look careless.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is it US-only?</h3>
+      <p>It is built in feet, square feet and US dollars — there is no unit or currency switch, and I would rather tell you that than let you buy it and find out. The math works anywhere; the labels and the money format do not. If you are pricing in metres and euros, this is not the right tool yet.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I get updates?</h3>
+      <p>Version 1.0 is a finished single file that will keep working. If a corrected build is released, license holders get it at no cost through the email on their receipt. Updates are not promised on a schedule.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I share it with my crew or a friend?</h3>
+      <p>Your own crew, on your own computers: yes, that is one business. A friend's business: no — that is a separate license. It is $47; please don't pass it around.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if I hate it?</h3>
+      <p>30 days, full refund, keep the files. See above.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FINAL -->
+<section class="band-ink final">
+  <div class="wrap">
+    <h2>You already did the hard part at the walkthrough.</h2>
+    <p class="lede" style="margin-bottom:0">The measuring, the counting, the "that ceiling is going to be a pig". Quote Engine turns that hour into a price you can defend and a page a customer signs.</p>
+    <a class="buy-btn" href="https://warriorplus.com/o2/buy/cp0qwh/l7k4sp/x7830c"><img src="https://warriorplus.com/o2/btn/fn100011000/cp0qwh/l7k4sp/480684" alt="Buy Quote Engine — $47"></a>
+    <p class="tiny" style="margin-top:20px">Instant download · one file · works offline · 30-day refund</p>
+    <p class="tiny" style="margin-top:8px;text-align:center">Disclaimer: WarriorPlus is used to help manage the sale of products on this site. While WarriorPlus helps facilitate the sale, all payments are made directly to the product vendor and NOT WarriorPlus. Thus, all product questions, support inquiries and/or refund requests must be sent to the vendor. WarriorPlus's role should not be construed as an endorsement, approval or review of these products or any claim, statement or opinion used in the marketing of these products.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="mailto:ayoubebay1@gmail.com">Support</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund.html">Refund policy</a>
+    </div>
+    <p style="margin-bottom:8px">Quote Engine is a calculation and document tool. It performs arithmetic on the rates and measurements you enter; it does not guarantee your costs, schedule or profit. Default rates are starting points from commonly published estimating ranges. You are responsible for the prices you quote, your contracts, your insurance and your licensing.</p>
+    <p style="margin:0">© PromptKing. All rights reserved. Quote Engine is not affiliated with any manufacturer, trade association or software vendor.</p>
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://warriorplus.com/o2/js/l7k4sp" defer></script>
+</body>
+</html>
